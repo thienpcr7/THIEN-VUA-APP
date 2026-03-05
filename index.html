@@ -70,41 +70,26 @@ background:#ff6a00;
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-
 const firebaseConfig = {
-
-apiKey: "DÁN_API_KEY_CỦA_XẾP",
-
-authDomain: "PROJECT.firebaseapp.com",
-
-projectId: "PROJECT",
-
-storageBucket: "PROJECT.appspot.com",
-
-messagingSenderId: "ID",
-
-appId: "APP_ID"
-
+  apiKey: "AIzaSyB373hVDOy2eH7XdyB3VZ_wXET1Rno0BOM",
+  authDomain: "thien-vua-app.firebaseapp.com",
+  projectId: "thien-vua-app",
+  appId: "1:776953179471:web:d2a676aa5bed179794293a"
 };
 
-
 const app = initializeApp(firebaseConfig);
-
-const auth = getAuth();
-
+const auth = getAuth(app);
 
 function loginGoogle(){
 
 const provider = new GoogleAuthProvider();
 
 signInWithPopup(auth, provider)
-
 .then((result)=>{
 
 alert("Đăng nhập thành công");
 
 })
-
 .catch((error)=>{
 
 console.log(error);
@@ -112,6 +97,10 @@ console.log(error);
 });
 
 }
+
+window.loginGoogle = loginGoogle;
+
+</script>
 
 
 window.loginGoogle = loginGoogle;
