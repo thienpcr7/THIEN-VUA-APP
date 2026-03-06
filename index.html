@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Thiện Vua App – Chuyên Gia Huấn Luyện AI Doanh Nghiệp X3 X5 Doanh Số</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --gold:#C9A84C;--gold-light:#F0C966;--gold-dark:#9A7A2E;
+  --bg:#07080F;--bg2:#0E1020;--bg3:#131525;
+  --white:#F5F5F5;--muted:#9AA0BC;--red:#E8203A;
+  --neon-gold:0 0 10px #C9A84C,0 0 30px #C9A84C55,0 0 60px #C9A84C22;
+  --neon-blue:0 0 10px #4488ff,0 0 30px #4488ff55;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'Be Vietnam Pro',sans-serif;overflow-x:hidden;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#0E1020;}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+
+/* PARTICLES */
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle linear infinite;}
+@keyframes twinkle{0%,100%{opacity:0;}50%{opacity:0.8;}}
+.gold-particle{position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;animation:floatUp linear infinite;}
+@keyframes floatUp{0%{transform:translateY(100vh);opacity:0;}10%{opacity:0.6;}90%{opacity:0.1;}100%{transform:translateY(-5vh);opacity:0;}}
+
+/* BG LOGO WATERMARK */
+#bg-logo{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;opacity:0.03;z-index:0;pointer-events:none;background:url('https://i.postimg.cc/hh2HK1Gf/LOGO-VUA-APP.png') center/contain no-repeat;}
+
+/* NAVBAR */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(7,8,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,0.25);height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 4%;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-img{width:42px;height:42px;border-radius:50%;border:2px solid var(--gold);overflow:hidden;position:relative;animation:rotateBorder 4s linear infinite;}
+.nav-logo-img img{width:100%;height:100%;object-fit:cover;}
+@keyframes rotateBorder{0%{box-shadow:var(--neon-gold);}50%{box-shadow:0 0 20px #F0C966,0 0 40px #C9A84C88;}100%{box-shadow:var(--neon-gold);}}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);text-shadow:var(--neon-gold);letter-spacing:1px;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;transition:all 0.3s;letter-spacing:0.5px;}
+.nav-links a:hover{color:var(--gold);text-shadow:0 0 10px var(--gold);}
+.nav-cta{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#000!important;padding:8px 18px;border-radius:6px;font-weight:800!important;font-size:0.8rem!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;}
+.hamburger span{width:24px;height:2px;background:var(--gold);display:block;transition:all 0.3s;}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,8,15,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,0.2);z-index:999;padding:1.5rem 4%;}
+.mobile-menu.open{display:block;}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:1rem;}
+.mobile-menu a{color:var(--muted);text-decoration:none;font-size:0.95rem;font-weight:500;display:block;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:70px 4% 60px;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 80% at 50% 0%,rgba(201,168,76,0.12) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 80% 60%,rgba(68,136,255,0.06) 0%,transparent 60%);z-index:0;}
+.hero-content{position:relative;z-index:1;flex:1;max-width:650px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);padding:7px 20px;border-radius:50px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;animation:fadeInDown 0.8s ease;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);line-height:1.15;margin-bottom:0.8rem;animation:fadeInUp 0.9s ease 0.2s both;}
+.hero h1 .gold{color:var(--gold);display:block;text-shadow:var(--neon-gold);}
+.hero-sub{font-size:1rem;color:var(--muted);margin-bottom:1rem;line-height:1.7;animation:fadeInUp 0.9s ease 0.3s both;}
+.hero-desc{font-size:0.9rem;color:#7A82A0;margin-bottom:2rem;line-height:1.8;animation:fadeInUp 0.9s ease 0.4s both;}
+.hero-desc span{color:var(--gold);font-weight:600;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeInUp 0.9s ease 0.5s both;margin-bottom:2.5rem;}
+.btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#000;padding:14px 28px;border-radius:8px;font-weight:800;font-size:0.92rem;text-decoration:none;border:none;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 25px rgba(201,168,76,0.35);display:inline-flex;align-items:center;gap:8px;}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(201,168,76,0.5);}
+.btn-outline{border:2px solid var(--gold);color:var(--gold);padding:14px 28px;border-radius:8px;font-weight:700;font-size:0.92rem;text-decoration:none;cursor:pointer;transition:all 0.3s;background:transparent;display:inline-flex;align-items:center;gap:8px;}
+.btn-outline:hover{background:rgba(201,168,76,0.1);box-shadow:0 0 20px rgba(201,168,76,0.2);}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;animation:fadeInUp 0.9s ease 0.6s both;}
+.stat{text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);font-weight:900;text-shadow:var(--neon-gold);}
+.stat-label{font-size:0.72rem;color:var(--muted);margin-top:3px;}
+.hero-visual{flex:1;display:flex;justify-content:center;align-items:center;position:relative;z-index:1;animation:fadeInRight 1s ease 0.3s both;max-width:45%;}
+.hero-img-wrap{position:relative;width:100%;max-width:420px;}
+.hero-img-wrap img{width:100%;border-radius:20px;border:1px solid rgba(201,168,76,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.5),var(--neon-gold);}
+.hero-img-glow{position:absolute;inset:-20px;background:radial-gradient(ellipse,rgba(201,168,76,0.15) 0%,transparent 70%);border-radius:30px;z-index:-1;}
+.floating-badge{position:absolute;background:rgba(7,8,15,0.9);border:1px solid rgba(201,168,76,0.4);border-radius:12px;padding:10px 14px;backdrop-filter:blur(10px);animation:float 3s ease-in-out infinite;}
+.floating-badge.top{top:20px;right:-30px;}
+.floating-badge.bot{bottom:20px;left:-30px;animation-delay:1.5s;}
+.floating-badge .fb-num{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold);}
+.floating-badge .fb-label{font-size:0.7rem;color:var(--muted);}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:80px 4%;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);text-align:center;margin-bottom:0.8rem;}
+.sec-title .gold{color:var(--gold);text-shadow:var(--neon-gold);}
+.sec-sub{text-align:center;color:var(--muted);max-width:600px;margin:0 auto 3rem;font-size:0.95rem;line-height:1.7;}
+.gold-line{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin:0.8rem auto 1.5rem;}
+
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:center;max-width:1100px;margin:0 auto;}
+.about-img-col{position:relative;}
+.about-img-col img{width:100%;border-radius:20px;border:1px solid rgba(201,168,76,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.about-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120%;height:120%;background:radial-gradient(ellipse,rgba(201,168,76,0.1) 0%,transparent 70%);border-radius:50%;z-index:-1;}
+.about-text .label{color:var(--gold);font-size:0.8rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.8rem;}
+.about-text h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:1.2rem;line-height:1.2;}
+.about-quote{border-left:3px solid var(--gold);padding:0.8rem 1.2rem;font-style:italic;color:var(--gold-light);font-size:1rem;margin-bottom:1.5rem;background:rgba(201,168,76,0.05);border-radius:0 8px 8px 0;line-height:1.6;}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:0.95rem;}
+.about-contacts{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;}
+.contact-chip{background:var(--bg2);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:0.8rem 1.2rem;text-align:center;}
+.contact-chip .val{color:var(--gold);font-weight:700;font-size:0.9rem;}
+.contact-chip .key{color:var(--muted);font-size:0.72rem;margin-top:3px;}
+
+/* PRODUCTS */
+.products-bg{background:linear-gradient(180deg,transparent,rgba(201,168,76,0.03),transparent);}
+.cat-label{display:flex;align-items:center;gap:12px;font-size:1.05rem;font-weight:700;color:var(--white);margin:2.5rem 0 1.2rem;}
+.cat-label::before{content:'';width:4px;height:22px;background:linear-gradient(var(--gold-light),var(--gold-dark));border-radius:2px;flex-shrink:0;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;}
+.p-card{background:var(--bg2);border:1px solid rgba(201,168,76,0.15);border-radius:14px;overflow:hidden;cursor:pointer;transition:all 0.35s;position:relative;}
+.p-card:hover{transform:translateY(-8px) scale(1.01);border-color:rgba(201,168,76,0.55);box-shadow:0 16px 50px rgba(201,168,76,0.18);}
+.p-card-img{width:100%;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,#1A1F40,#0E1020);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;}
+.p-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.p-card:hover .p-card-img img{transform:scale(1.07);}
+.p-badge{position:absolute;top:8px;left:8px;background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#000;font-size:0.65rem;font-weight:800;padding:3px 8px;border-radius:4px;z-index:2;}
+.p-body{padding:1rem;}
+.p-name{font-weight:800;font-size:0.88rem;margin-bottom:4px;line-height:1.4;}
+.p-price{color:var(--gold);font-weight:900;font-size:1rem;margin-bottom:0.5rem;}
+.p-desc{color:var(--muted);font-size:0.78rem;line-height:1.5;margin-bottom:0.8rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.p-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);color:var(--gold);font-size:0.75rem;font-weight:700;padding:6px 12px;border-radius:6px;cursor:pointer;transition:all 0.3s;text-decoration:none;}
+.p-btn:hover{background:rgba(201,168,76,0.2);border-color:var(--gold);}
+
+/* COURSE SECTION */
+.course-card{background:linear-gradient(135deg,#0E1020,#131525);border:1px solid rgba(201,168,76,0.25);border-radius:20px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:1100px;margin:0 auto;position:relative;overflow:hidden;}
+.course-card::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 70%);border-radius:50%;}
+.course-badge-tag{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid var(--gold);color:var(--gold);padding:5px 16px;border-radius:50px;font-size:0.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;}
+.course-card h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:0.4rem;line-height:1.2;}
+.course-card h3{color:var(--gold);font-size:0.95rem;font-weight:700;margin-bottom:1.5rem;line-height:1.4;}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:0.7rem;margin-bottom:1.5rem;}
+.feature-list li{display:flex;align-items:center;gap:10px;font-size:0.9rem;color:var(--muted);}
+.feature-list li .icon{color:var(--gold);font-size:0.9rem;flex-shrink:0;}
+.feature-list li strong{color:var(--white);}
+.bonus-box{background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:1.2rem;margin-bottom:1.5rem;}
+.bonus-box h4{color:var(--gold-light);font-size:0.85rem;font-weight:800;margin-bottom:0.8rem;}
+.bonus-box ul{list-style:none;}
+.bonus-box li{font-size:0.82rem;color:var(--muted);padding:0.3rem 0 0.3rem 1.2rem;position:relative;border-bottom:1px solid rgba(255,255,255,0.04);}
+.bonus-box li:last-child{border:none;}
+.bonus-box li::before{content:'→';position:absolute;left:0;color:var(--gold);}
+.limited{display:inline-block;background:var(--red);color:#fff;padding:4px 12px;border-radius:4px;font-size:0.72rem;font-weight:800;margin-bottom:0.8rem;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.7;}}
+.price-wrap{margin-bottom:1.5rem;}
+.price-orig{text-decoration:line-through;color:var(--muted);font-size:1rem;}
+.price-sale{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--gold);font-weight:900;text-shadow:var(--neon-gold);line-height:1;}
+.price-note{font-size:0.8rem;color:var(--muted);margin-top:5px;}
+.video-placeholder{background:linear-gradient(135deg,#1A1F40,#0E1020);border-radius:16px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,168,76,0.2);cursor:pointer;position:relative;overflow:hidden;margin-bottom:1.5rem;}
+.video-placeholder:hover .play-circle{transform:scale(1.15);background:rgba(201,168,76,0.25);}
+.play-circle{width:64px;height:64px;background:rgba(201,168,76,0.15);border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;transition:all 0.3s;}
+.features-2col{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;}
+.feat-chip{background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:0.7rem 0.9rem;display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--muted);}
+.feat-chip .tick{color:var(--gold);font-size:0.75rem;}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto;}
+.testi-card{background:var(--bg2);border:1px solid rgba(201,168,76,0.15);border-radius:16px;overflow:hidden;transition:all 0.3s;}
+.testi-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,0.4);box-shadow:0 12px 40px rgba(201,168,76,0.12);}
+.testi-vid{background:linear-gradient(135deg,#1A1F40,#0E1020);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;}
+.testi-vid .play-circle{width:48px;height:48px;font-size:1rem;}
+.testi-tag-badge{position:absolute;top:10px;left:10px;background:rgba(201,168,76,0.9);color:#000;font-size:0.62rem;font-weight:800;padding:3px 8px;border-radius:4px;}
+.testi-body{padding:1.2rem;}
+.testi-name{font-weight:800;font-size:0.9rem;margin-bottom:6px;}
+.testi-stars{color:var(--gold);font-size:0.8rem;margin-bottom:6px;}
+.testi-quote{font-size:0.82rem;color:var(--muted);font-style:italic;line-height:1.6;}
+
+/* REVENUE GRID */
+.rev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem;}
+.rev-card{background:var(--bg2);border:1px solid rgba(201,168,76,0.15);border-radius:12px;overflow:hidden;}
+.rev-card-img{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#1A1540,#0E1020);display:flex;align-items:center;justify-content:center;font-size:2rem;}
+.rev-card-body{padding:0.8rem;font-size:0.8rem;color:var(--muted);}
+
+/* CTA */
+.cta-sec{text-align:center;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,168,76,0.08) 0%,transparent 70%);}
+.cta-sec h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);margin-bottom:1rem;}
+.cta-sec h2 .gold{color:var(--gold);display:block;}
+.cta-sec p{color:var(--muted);max-width:550px;margin:0 auto 2.5rem;font-size:1rem;line-height:1.7;}
+
+/* FOOTER */
+footer{background:#060710;border-top:1px solid rgba(201,168,76,0.12);padding:60px 4% 30px;position:relative;z-index:1;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;margin-bottom:3rem;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold);margin-bottom:1rem;text-shadow:var(--neon-gold);}
+.footer-desc{color:var(--muted);font-size:0.85rem;line-height:1.7;margin-bottom:1.2rem;}
+.social-links{display:flex;gap:10px;}
+.social-btn{width:36px;height:36px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;font-size:0.85rem;transition:all 0.3s;}
+.social-btn:hover{background:rgba(201,168,76,0.2);box-shadow:0 0 12px rgba(201,168,76,0.3);}
+.footer-col h4{color:var(--white);font-weight:800;margin-bottom:1rem;font-size:0.82rem;letter-spacing:2px;text-transform:uppercase;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+.footer-col ul a{color:var(--muted);text-decoration:none;font-size:0.82rem;transition:color 0.3s;}
+.footer-col ul a:hover{color:var(--gold);}
+.footer-contact-list{display:flex;flex-direction:column;gap:0.6rem;}
+.footer-contact-list a{color:var(--muted);text-decoration:none;font-size:0.82rem;display:flex;align-items:center;gap:8px;transition:color 0.3s;}
+.footer-contact-list a:hover{color:var(--gold);}
+.newsletter-wrap{display:flex;margin-top:0.5rem;}
+.newsletter-wrap input{flex:1;background:#0E1020;border:1px solid rgba(201,168,76,0.25);border-right:none;color:#fff;padding:9px 12px;border-radius:6px 0 0 6px;font-size:0.82rem;outline:none;font-family:inherit;}
+.newsletter-wrap button{background:var(--gold);color:#000;border:none;padding:9px 14px;border-radius:0 6px 6px 0;font-weight:800;font-size:0.82rem;cursor:pointer;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-bottom p{color:var(--muted);font-size:0.78rem;}
+.footer-bottom a{color:var(--gold);text-decoration:none;font-size:0.78rem;}
+
+/* FLOATING GIFT */
+.floating-gift{position:fixed;bottom:1.5rem;right:1.5rem;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.gift-bubble{background:#fff;color:#000;padding:8px 14px;border-radius:12px 12px 4px 12px;font-size:0.72rem;font-weight:800;box-shadow:0 4px 20px rgba(0,0,0,0.3);white-space:nowrap;line-height:1.4;}
+.gift-bubble span{color:var(--red);}
+.gift-btn{width:68px;height:68px;background:var(--red);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;color:#fff;box-shadow:0 4px 25px rgba(232,32,58,0.5);animation:bounceGift 2s ease-in-out infinite;}
+.gift-btn .icon{font-size:1.8rem;line-height:1;}
+.gift-btn small{font-size:0.5rem;font-weight:800;text-align:center;line-height:1.2;}
+@keyframes bounceGift{0%,100%{transform:scale(1);}30%{transform:scale(1.12);}60%{transform:scale(0.95);}}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.active{display:flex;}
+.modal{background:var(--bg2);border:1px solid rgba(201,168,76,0.3);border-radius:20px;width:100%;max-width:860px;max-height:90vh;overflow-y:auto;position:relative;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.1);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;z-index:10;transition:all 0.3s;}
+.modal-close:hover{background:rgba(255,255,255,0.2);}
+.modal-header{padding:2rem 2rem 0;}
+.modal-header img{width:100%;border-radius:12px;max-height:220px;object-fit:cover;margin-bottom:1.2rem;}
+.modal-header h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:0.3rem;}
+.modal-header .price{color:var(--gold);font-size:1.8rem;font-weight:900;margin-bottom:1rem;}
+.modal-body{padding:1.5rem 2rem 2rem;}
+.modal-desc{color:var(--muted);line-height:1.8;font-size:0.92rem;margin-bottom:1.5rem;}
+.modal-features{margin-bottom:1.5rem;}
+.modal-features h4{font-size:0.85rem;font-weight:800;color:var(--gold-light);margin-bottom:0.8rem;text-transform:uppercase;letter-spacing:1px;}
+.modal-features ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.modal-features li{display:flex;align-items:flex-start;gap:8px;font-size:0.88rem;color:var(--muted);}
+.modal-features li::before{content:'✦';color:var(--gold);flex-shrink:0;font-size:0.7rem;margin-top:3px;}
+.buy-btn-wrap{text-align:center;margin-top:1.5rem;}
+
+/* PAYMENT MODAL */
+.pay-modal{max-width:580px;}
+.pay-header{padding:2rem;text-align:center;border-bottom:1px solid rgba(201,168,76,0.15);}
+.pay-header h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.3rem;}
+.pay-header .pay-price{color:var(--gold);font-size:2rem;font-weight:900;}
+.pay-body{padding:1.5rem 2rem 2rem;}
+.pay-tabs{display:flex;gap:0;margin-bottom:1.5rem;border-radius:10px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);}
+.pay-tab{flex:1;padding:10px;text-align:center;font-size:0.82rem;font-weight:700;cursor:pointer;background:transparent;border:none;color:var(--muted);transition:all 0.3s;}
+.pay-tab.active{background:rgba(201,168,76,0.15);color:var(--gold);}
+.pay-panel{display:none;}
+.pay-panel.active{display:block;}
+.bank-info{background:var(--bg3);border:1px solid rgba(201,168,76,0.15);border-radius:12px;padding:1.2rem;margin-bottom:1.2rem;}
+.bank-row{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.88rem;}
+.bank-row:last-child{border:none;}
+.bank-row .label{color:var(--muted);}
+.bank-row .val{color:var(--white);font-weight:700;}
+.bank-row .val.gold{color:var(--gold);}
+.copy-btn{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);color:var(--gold);padding:3px 8px;border-radius:4px;font-size:0.72rem;cursor:pointer;transition:all 0.3s;}
+.copy-btn:hover{background:rgba(201,168,76,0.2);}
+/* QR NEON */
+.qr-wrap{text-align:center;padding:1.5rem;background:linear-gradient(135deg,#0a0c1a,#0e1228);border-radius:16px;border:1px solid rgba(201,168,76,0.2);position:relative;overflow:hidden;}
+.qr-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.1) 0%,transparent 60%);}
+.qr-neon-border{display:inline-block;padding:12px;background:#fff;border-radius:12px;box-shadow:0 0 20px rgba(201,168,76,0.5),0 0 40px rgba(201,168,76,0.3),0 0 80px rgba(201,168,76,0.1);position:relative;z-index:1;}
+.qr-neon-border img{width:180px;height:180px;display:block;}
+.qr-bank-name{font-size:0.8rem;font-weight:800;color:var(--gold);margin-top:1rem;letter-spacing:1px;text-transform:uppercase;text-shadow:var(--neon-gold);}
+.qr-acct{font-size:1.1rem;font-weight:900;color:var(--white);margin-top:4px;}
+.qr-sub{font-size:0.75rem;color:var(--muted);margin-top:4px;}
+.neon-line{width:80%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1rem auto;}
+.paypal-info{background:var(--bg3);border:1px solid rgba(201,168,76,0.15);border-radius:12px;padding:1.2rem;text-align:center;}
+.paypal-email{font-size:1.1rem;font-weight:800;color:var(--gold);margin:0.5rem 0;}
+.pay-form{margin-top:1.2rem;}
+.pay-form input,.pay-form select{width:100%;background:var(--bg3);border:1px solid rgba(201,168,76,0.2);color:#fff;padding:11px 14px;border-radius:8px;font-size:0.88rem;outline:none;margin-bottom:0.8rem;font-family:inherit;transition:border-color 0.3s;}
+.pay-form input:focus,.pay-form select:focus{border-color:var(--gold);box-shadow:0 0 8px rgba(201,168,76,0.2);}
+.pay-submit{width:100%;background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#000;border:none;padding:14px;border-radius:8px;font-weight:900;font-size:1rem;cursor:pointer;transition:all 0.3s;font-family:inherit;}
+.pay-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.4);}
+.pay-note{font-size:0.78rem;color:var(--muted);text-align:center;margin-top:0.8rem;line-height:1.5;}
+
+/* ANIMATIONS */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:translateX(0);}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-r{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal-r.visible{opacity:1;transform:translateX(0);}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:70px;}
+.page.active{display:block;}
+#home-page{display:block;}
+
+/* AFFILIATE PAGE */
+.aff-hero{background:linear-gradient(135deg,#0E1020,#131525);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:3rem;text-align:center;margin-bottom:3rem;}
+.aff-hero h2{font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:1rem;}
+.aff-percent{font-family:'Playfair Display',serif;font-size:5rem;color:var(--gold);font-weight:900;text-shadow:var(--neon-gold);line-height:1;}
+.aff-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin:2rem 0;}
+.aff-step{background:var(--bg2);border:1px solid rgba(201,168,76,0.15);border-radius:16px;padding:2rem;text-align:center;}
+.aff-step .step-num{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);font-weight:900;margin-bottom:1rem;}
+.aff-step h3{margin-bottom:0.5rem;font-size:1rem;}
+.aff-step p{color:var(--muted);font-size:0.85rem;line-height:1.6;}
+
+/* FORM */
+.form-page{max-width:600px;margin:0 auto;padding:2rem;}
+.form-card{background:var(--bg2);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:2.5rem;}
+.form-card h2{font-family:'Playfair Display',serif;font-size:1.8rem;text-align:center;margin-bottom:2rem;}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-size:0.82rem;font-weight:700;color:var(--muted);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:1px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg3);border:1px solid rgba(201,168,76,0.2);color:#fff;padding:12px 14px;border-radius:8px;font-size:0.9rem;outline:none;font-family:inherit;transition:border-color 0.3s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);box-shadow:0 0 8px rgba(201,168,76,0.2);}
+.form-group textarea{min-height:100px;resize:vertical;}
+.form-submit{width:100%;background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#000;border:none;padding:14px;border-radius:8px;font-weight:900;font-size:1rem;cursor:pointer;transition:all 0.3s;font-family:inherit;}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.4);}
+.form-divider{display:flex;align-items:center;gap:1rem;margin:1.2rem 0;color:var(--muted);font-size:0.82rem;}
+.form-divider::before,.form-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.1);}
+.form-link{text-align:center;font-size:0.85rem;color:var(--muted);margin-top:1rem;}
+.form-link a{color:var(--gold);cursor:pointer;font-weight:700;}
+
+/* ADMIN */
+.admin-nav{background:var(--bg2);border-bottom:1px solid rgba(201,168,76,0.15);padding:1rem 4%;display:flex;gap:1rem;overflow-x:auto;}
+.admin-tab{padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:700;cursor:pointer;color:var(--muted);background:transparent;border:none;transition:all 0.3s;white-space:nowrap;}
+.admin-tab.active{background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.3);}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:2rem;}
+.admin-stat{background:var(--bg2);border:1px solid rgba(201,168,76,0.15);border-radius:14px;padding:1.5rem;text-align:center;}
+.admin-stat .num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-weight:900;}
+.admin-stat .lbl{color:var(--muted);font-size:0.78rem;margin-top:5px;}
+.admin-table{width:100%;border-collapse:collapse;background:var(--bg2);border-radius:12px;overflow:hidden;}
+.admin-table th{background:rgba(201,168,76,0.1);color:var(--gold);font-size:0.78rem;font-weight:800;padding:12px 16px;text-align:left;letter-spacing:1px;text-transform:uppercase;}
+.admin-table td{padding:12px 16px;font-size:0.85rem;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--muted);}
+.admin-table tr:hover td{background:rgba(255,255,255,0.02);}
+.badge-green{background:rgba(34,197,94,0.15);color:#22c55e;padding:3px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;}
+.badge-yellow{background:rgba(234,179,8,0.15);color:#eab308;padding:3px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;}
+.badge-red{background:rgba(239,68,68,0.15);color:#ef4444;padding:3px 8px;border-radius:4px;font-size:0.72rem;font-weight:700;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero{flex-direction:column;text-align:center;gap:3rem;}
+  .hero-visual{max-width:100%;}
+  .hero-btns{justify-content:center;}
+  .hero-stats{justify-content:center;}
+  .about-wrap{grid-template-columns:1fr;}
+  .course-card{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr 1fr;}
+  .rev-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .aff-steps{grid-template-columns:1fr;}
+  .admin-stats{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .testi-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .modal{margin:0.5rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+<div id="bg-logo"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">
+    <div class="nav-logo-img">
+      <img src="https://i.postimg.cc/hh2HK1Gf/LOGO-VUA-APP.png" alt="Thiện Vua App Logo" onerror="this.parentElement.innerHTML='👑'"/>
+    </div>
+    <span class="nav-brand">THIỆN VUA APP</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Trang Chủ</a></li>
+    <li><a href="#" onclick="showPage('products')">Sản Phẩm</a></li>
+    <li><a href="#" onclick="showPage('course')">Khoá Học</a></li>
+    <li><a href="#" onclick="showPage('about')">Về Chúng Tôi</a></li>
+    <li><a href="#" onclick="showPage('affiliate')">Tiếp Thị</a></li>
+    <li><a href="#" onclick="showPage('students')">Học Viên</a></li>
+    <li><a href="#" onclick="showPage('login')" class="nav-cta">🚀 ĐĂNG NHẬP</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#" onclick="showPage('home');toggleNav()">🏠 Trang Chủ</a></li>
+    <li><a href="#" onclick="showPage('products');toggleNav()">📦 Sản Phẩm</a></li>
+    <li><a href="#" onclick="showPage('course');toggleNav()">🎓 Khoá Học</a></li>
+    <li><a href="#" onclick="showPage('about');toggleNav()">👑 Về Chúng Tôi</a></li>
+    <li><a href="#" onclick="showPage('affiliate');toggleNav()">💰 Tiếp Thị Liên Kết</a></li>
+    <li><a href="#" onclick="showPage('students');toggleNav()">⭐ Học Viên</a></li>
+    <li><a href="#" onclick="showPage('login');toggleNav()">🔐 Đăng Nhập</a></li>
+    <li><a href="#" onclick="showPage('register');toggleNav()">✍️ Đăng Ký</a></li>
+  </ul>
+</div>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🏆 Chuyên Gia AI Số 1 Việt Nam</div>
+      <h1>
+        <span>Giúp Người Kinh Doanh &<br>Chủ Doanh Nghiệp</span>
+        <span class="gold">ỨNG DỤNG AI ĐỂ BÁN HÀNG –<br>TĂNG THU NHẬP – SCALE HỆ THỐNG</span>
+      </h1>
+      <p class="hero-sub">Đào tạo AI thực chiến | Tự động hóa marketing & bán hàng | Xây dòng tiền bền vững 24/7</p>
+      <p class="hero-desc">
+        <span>✓ Không cần giỏi công nghệ.</span> &nbsp;
+        <span>✓ Không cần biết code.</span> &nbsp;
+        <span>✓ Không cần đội ngũ lớn.</span><br>
+        Chỉ cần đúng hệ thống AI – bạn có thể bán hàng ngay cả khi đang ngủ.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="showPage('course')">🚀 NHẬN LỘ TRÌNH AI MIỄN PHÍ</button>
+        <button class="btn-outline" onclick="showPage('products')">💰 SỞ HỮU APP MỘT CHẠM</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Học Viên Thành Công</div></div>
+        <div class="stat"><div class="stat-num">1000+</div><div class="stat-label">App AI Đã Tạo</div></div>
+        <div class="stat"><div class="stat-num">70%</div><div class="stat-label">Tiết Kiệm Chi Phí</div></div>
+        <div class="stat"><div class="stat-num">X3X5</div><div class="stat-label">Tăng Doanh Số</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1yophQsMDAFo7yyDqSGFbPG5YLWG2cdSd&sz=w800" alt="Chuyên gia Nguyễn Quốc Thiện" onerror="this.src='https://i.postimg.cc/hh2HK1Gf/LOGO-VUA-APP.png'"/>
+        <div class="hero-img-glow"></div>
+        <div class="floating-badge top"><div class="fb-num">500+</div><div class="fb-label">Học viên</div></div>
+        <div class="floating-badge bot"><div class="fb-num">X3X5</div><div class="fb-label">Doanh số</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SHORT -->
+  <section style="padding:60px 4%;">
+    <div class="about-wrap reveal">
+      <div class="about-img-col">
+        <img src="https://drive.google.com/thumbnail?id=1FwzHay7yjPSjz28aQ1E-rFPAhHWCkeN&sz=w600" alt="Thiện Vua App Team" onerror="this.style.display='none'"/>
+        <div class="about-glow"></div>
+      </div>
+      <div class="about-text">
+        <div class="label">⚜ VỀ CHÚNG TÔI</div>
+        <h2>THIỆN<br><span style="color:var(--gold)">VUA APP</span></h2>
+        <div class="about-quote">"Huấn luyện AI thực chiến – Xây hệ thống bán hàng tự động – Nhân bản thu nhập bền vững"</div>
+        <p><strong style="color:var(--gold)">THIỆN VUA APP</strong> là thương hiệu đào tạo và triển khai AI dành cho người kinh doanh, chủ doanh nghiệp, đội ngũ bán hàng và cá nhân muốn tạo đột phá thu nhập trong thời đại trí tuệ nhân tạo.</p>
+        <p>Chúng tôi không dạy AI theo lý thuyết, mà tập trung ứng dụng AI để tạo nội dung – bán hàng – chăm sóc khách – xây hệ thống tự động – scale đội nhóm.</p>
+        <div class="about-contacts">
+          <div class="contact-chip"><div class="val">0985 774 448</div><div class="key">📞 Hotline</div></div>
+          <div class="contact-chip"><div class="val">0968 065 274</div><div class="key">💬 Zalo</div></div>
+          <div class="contact-chip"><div class="val">thienmasterai@gmail.com</div><div class="key">✉️ Email</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS PREVIEW -->
+  <section class="products-bg" style="padding:60px 4%;">
+    <h2 class="sec-title reveal">SIÊU HỆ SINH THÁI <span class="gold">APP AI</span></h2>
+    <div class="gold-line"></div>
+    <p class="sec-sub reveal">Những ứng dụng AI đỉnh cao giúp bạn thống trị thị trường</p>
+    <div class="products-grid reveal" id="home-products-grid"></div>
+    <div style="text-align:center;margin-top:2rem;">
+      <button class="btn-gold" onclick="showPage('products')">Xem Tất Cả Sản Phẩm →</button>
+    </div>
+  </section>
+
+  <!-- COURSE PREVIEW -->
+  <section style="padding:60px 4%;">
+    <h2 class="sec-title reveal">KHOÁ HỌC <span class="gold">CHỦ LỰC</span></h2>
+    <div class="gold-line"></div>
+    <div class="course-card reveal">
+      <div>
+        <div class="course-badge-tag">🏆 SẢN PHẨM CHỦ LỰC</div>
+        <h2>GPT MONEY APP AI</h2>
+        <h3>HỆ THỐNG KIẾM TIỀN BẰNG APP AI TỰ ĐỘNG HOÁ</h3>
+        <ul class="feature-list">
+          <li><span class="icon">✅</span><span>Tư duy kiếm tiền thời đại AI</span></li>
+          <li><span class="icon">✅</span><span>Tạo content bán hàng bằng AI</span></li>
+          <li><span class="icon">✅</span><span>Tạo ra hàng nghìn app bằng 1 chạm</span></li>
+          <li><span class="icon">✅</span><span>Xây phễu marketing & chatbot tự động</span></li>
+          <li><span class="icon">✅</span><span>Automation chăm sóc khách 24/7</span></li>
+          <li><span class="icon">✅</span><span>Nhân bản đội nhóm bán hàng tự động</span></li>
+        </ul>
+        <div class="bonus-box">
+          <h4>🎁 TẶNG NGAY 5 SIÊU ỨNG DỤNG + BONUS ĐỘC QUYỀN</h4>
+          <ul>
+            <li>Trợ Lý AI Dùng ChatGPT Chuyên Nghiệp</li>
+            <li>Bộ Câu Hỏi Prompt Mẫu Công Thức Độc Quyền</li>
+            <li>Công Thức Tạo 1000 App Chỉ Với 1 Chạm</li>
+            <li>Trợ lý AI cá nhân hóa + 10 APP đã code sẵn</li>
+            <li>Nhiều Quà Tặng Khác Trị Giá Đến 20 Triệu VNĐ</li>
+          </ul>
+        </div>
+        <div class="limited">🔥 GIỚI HẠN CHỈ 3 SUẤT</div>
+        <div class="price-wrap">
+          <div class="price-orig">Giá gốc: 10.000$</div>
+          <div class="price-sale">ƯU ĐÃI: 3.990$</div>
+          <div class="price-note">≈ 107.700.000 VNĐ (27k/đô) • Tặng kèm bộ Prompt VIP + 10 App code sẵn</div>
+        </div>
+        <button class="btn-gold" onclick="openPayModal({name:'GPT MONEY APP AI – COACHING 1:1',price:'3.990$',priceVnd:'107.700.000đ'})">🔥 ĐĂNG KÝ HỌC NGAY – SỐ LƯỢNG CHỈ 3 SUẤT</button>
+      </div>
+      <div>
+        <div class="video-placeholder" onclick="alert('Video sẽ được thêm tại đây!')">
+          <div class="play-circle">▶</div>
+        </div>
+        <div class="features-2col">
+          <div class="feat-chip"><span class="tick">✦</span>Không cần biết code</div>
+          <div class="feat-chip"><span class="tick">✦</span>Không cần đội ngũ</div>
+          <div class="feat-chip"><span class="tick">✦</span>Coaching 1:1 trực tiếp</div>
+          <div class="feat-chip"><span class="tick">✦</span>Kết quả trong 6 tháng</div>
+          <div class="feat-chip"><span class="tick">✦</span>Hỗ trợ sau khoá học</div>
+          <div class="feat-chip"><span class="tick">✦</span>10 App code sẵn tặng kèm</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="padding:60px 4%;">
+    <h2 class="sec-title reveal">KẾT QUẢ THẬT – <span class="gold">KHÔNG NÓI SUÔNG</span></h2>
+    <div class="gold-line"></div>
+    <p class="sec-sub reveal">Hàng trăm học viên đã ứng dụng AI để tăng hiệu suất làm việc và tạo ra doanh thu ổn định</p>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="testi-vid"><span class="testi-tag-badge">Testimonial</span><div class="play-circle">▶</div></div>
+        <div class="testi-body"><div class="testi-name">Học viên #1 – CEO Doanh nghiệp</div><div class="testi-stars">★★★★★</div><div class="testi-quote">"AI đã giúp tôi cắt giảm 70% chi phí nhân sự và tăng gấp 3 lần hiệu suất marketing chỉ sau 2 tháng."</div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-vid"><span class="testi-tag-badge">Testimonial</span><div class="play-circle">▶</div></div>
+        <div class="testi-body"><div class="testi-name">Học viên #2 – Chủ shop online</div><div class="testi-stars">★★★★★</div><div class="testi-quote">"Từ khi dùng AI, doanh thu tăng 5 lần, mà tôi không cần tuyển thêm nhân viên marketing nào."</div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-vid"><span class="testi-tag-badge">Testimonial</span><div class="play-circle">▶</div></div>
+        <div class="testi-body"><div class="testi-name">Học viên #3 – KOL / Influencer</div><div class="testi-stars">★★★★★</div><div class="testi-quote">"Tôi tạo được 1000 app chỉ trong 1 ngày nhờ khoá học. Thu nhập thụ động tăng không ngờ."</div></div>
+      </div>
+    </div>
+    <!-- Revenue screenshots -->
+    <div class="rev-grid reveal">
+      <div class="rev-card"><div class="rev-card-img">💰</div><div class="rev-card-body">Doanh thu tháng 1</div></div>
+      <div class="rev-card"><div class="rev-card-img">📈</div><div class="rev-card-body">Doanh thu tháng 2</div></div>
+      <div class="rev-card"><div class="rev-card-img">🚀</div><div class="rev-card-body">Doanh thu tháng 3</div></div>
+      <div class="rev-card"><div class="rev-card-img">🏆</div><div class="rev-card-body">Doanh thu tháng 4</div></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <h2 class="reveal">AI KHÔNG THAY THẾ BẠN.<span class="gold">NGƯỜI BIẾT DÙNG AI SẼ THAY THẾ BẠN.</span></h2>
+    <p class="reveal">Quyết định hôm nay – Kết quả trong 6 tháng tới. Đừng để mình bị bỏ lại phía sau.</p>
+    <button class="btn-gold reveal" onclick="openPayModal({name:'GPT MONEY APP AI',price:'3.990$',priceVnd:'107.700.000đ'})">🚀 BẮT ĐẦU NGAY – KHÔNG TRÌ HOÃN</button>
+  </section>
+
+</div><!-- end home page -->
+
+<!-- ===== PRODUCTS PAGE ===== -->
+<div class="page" id="page-products">
+  <section style="padding:100px 4% 60px;">
+    <h2 class="sec-title">SIÊU HỆ SINH THÁI <span class="gold">APP AI</span></h2>
+    <div class="gold-line"></div>
+    <p class="sec-sub">Những ứng dụng AI đỉnh cao giúp bạn thống trị thị trường và tối ưu hóa lợi nhuận</p>
+    <div id="all-products-container"></div>
+  </section>
+</div>
+
+<!-- ===== COURSE PAGE ===== -->
+<div class="page" id="page-course">
+  <section style="padding:100px 4% 60px;">
+    <h2 class="sec-title">KHOÁ HỌC <span class="gold">GPT MONEY APP AI</span></h2>
+    <div class="gold-line"></div>
+    <div class="course-card" style="margin-top:2rem;">
+      <div>
+        <div class="course-badge-tag">🏆 COACHING 1:1 CAO CẤP</div>
+        <h2>NGƯỜI THỪA KẾ VỊ VUA ỨNG DỤNG</h2>
+        <h3>MỞ KHÓA TỰ DO TÀI CHÍNH MÀ KHÔNG CẦN VIẾT MỘT DÒNG CODE</h3>
+        <ul class="feature-list">
+          <li><span class="icon">●</span><strong>Đối tượng:</strong><span>Người KD | Chủ DN | CEO | KOL | KOC | Người bán khoá học | Startup</span></li>
+          <li><span class="icon">✅</span><span>Tư duy kiếm tiền thời đại AI từ con số 0</span></li>
+          <li><span class="icon">✅</span><span>Tạo content bán hàng bằng AI – tự động 24/7</span></li>
+          <li><span class="icon">✅</span><span>Tạo ra hàng nghìn app chỉ bằng 1 chạm</span></li>
+          <li><span class="icon">✅</span><span>Xây phễu marketing App & chatbot tự động</span></li>
+          <li><span class="icon">✅</span><span>Automation chăm sóc khách hàng 24/7</span></li>
+          <li><span class="icon">✅</span><span>Nhân bản đội nhóm bán hàng tự động</span></li>
+          <li><span class="icon">✅</span><span>Hỗ trợ triển khai hệ thống sau khoá học</span></li>
+        </ul>
+        <div class="bonus-box">
+          <h4>🎁 TẶNG KÈM ĐỘC QUYỀN CHỈ CHO 3 SUẤT NÀY</h4>
+          <ul>
+            <li>Bộ Prompt AI Công Thức Độc Quyền (Trị giá 5.000$)</li>
+            <li>Trợ lý AI cá nhân hóa cho doanh nghiệp của bạn</li>
+            <li>10 APP đã code sẵn – Tạo ra tiền ngay lập tức</li>
+            <li>Coaching 1:1 trực tiếp với Chuyên gia Nguyễn Quốc Thiện</li>
+            <li>Cộng đồng VIP hỗ trợ 24/7 trọn đời</li>
+          </ul>
+        </div>
+        <div class="limited">🔥 GIỚI HẠN CHỈ 3 SUẤT – SẮP HẾT!</div>
+        <div class="price-wrap">
+          <div class="price-orig">Giá gốc: 10.000$</div>
+          <div class="price-sale">ƯU ĐÃI: 3.990$</div>
+          <div class="price-note">≈ 107.700.000 VNĐ • Thanh toán 1 lần • Hỗ trợ trọn đời</div>
+        </div>
+        <button class="btn-gold" style="font-size:1rem;" onclick="openPayModal({name:'GPT MONEY APP AI – COACHING 1:1',price:'3.990$',priceVnd:'107.700.000đ'})">🔥 ĐĂNG KÝ HỌC NGAY – KHÔNG TRÌ HOÃN</button>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1SZs6E4k2ojehy8TVo1eK-1ptzoqD3zIX&sz=w600" alt="Khóa học" style="width:100%;border-radius:16px;border:1px solid rgba(201,168,76,0.3);" onerror="this.style.display='none'"/>
+        <div style="margin-top:1.5rem;" class="features-2col">
+          <div class="feat-chip"><span class="tick">✦</span>Không cần code</div>
+          <div class="feat-chip"><span class="tick">✦</span>Không cần đội ngũ</div>
+          <div class="feat-chip"><span class="tick">✦</span>Coaching 1:1</div>
+          <div class="feat-chip"><span class="tick">✦</span>Kết quả 6 tháng</div>
+          <div class="feat-chip"><span class="tick">✦</span>Hỗ trợ trọn đời</div>
+          <div class="feat-chip"><span class="tick">✦</span>10 App code sẵn</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== ABOUT PAGE ===== -->
+<div class="page" id="page-about">
+  <section style="padding:100px 4% 60px;">
+    <h2 class="sec-title">VỀ <span class="gold">THIỆN VUA APP</span></h2>
+    <div class="gold-line"></div>
+    <div class="about-wrap" style="margin-top:3rem;">
+      <div class="about-img-col">
+        <img src="https://drive.google.com/thumbnail?id=1yophQsMDAFo7yyDqSGFbPG5YLWG2cdSd&sz=w800" alt="Chuyên gia Nguyễn Quốc Thiện" onerror="this.style.minHeight='400px';this.style.background='#131525';"/>
+        <div class="about-glow"></div>
+      </div>
+      <div class="about-text">
+        <div class="label">⚜ CHUYÊN GIA NGUYỄN QUỐC THIỆN</div>
+        <h2>THIỆN<br><span style="color:var(--gold)">VUA APP</span></h2>
+        <div class="about-quote">"Huấn luyện AI thực chiến – Xây hệ thống bán hàng tự động – Nhân bản thu nhập bền vững"</div>
+        <p><strong style="color:var(--gold)">THIỆN VUA APP</strong> là thương hiệu đào tạo và triển khai AI dành cho người kinh doanh, chủ doanh nghiệp, đội ngũ bán hàng và cá nhân muốn tạo đột phá thu nhập trong thời đại trí tuệ nhân tạo.</p>
+        <p>Chúng tôi không dạy AI theo lý thuyết, mà tập trung ứng dụng AI để tạo nội dung – bán hàng – chăm sóc khách – xây hệ thống tự động – scale đội nhóm.</p>
+        <p>Mục tiêu của THIỆN VUA APP là giúp mỗi học viên <strong>làm chủ công nghệ AI</strong>, làm chủ dòng tiền và làm chủ cuộc chơi kinh doanh mới, cho đối thủ hít khói khi không biết tận dụng sức mạnh AI để đi đầu.</p>
+        <div class="about-contacts">
+          <div class="contact-chip"><div class="val">0985 774 448</div><div class="key">📞 Hotline</div></div>
+          <div class="contact-chip"><div class="val">0968 065 274</div><div class="key">💬 Zalo</div></div>
+        </div>
+        <div class="about-contacts" style="margin-top:0.8rem;">
+          <div class="contact-chip"><div class="val" style="font-size:0.82rem;">thienmasterai@gmail.com</div><div class="key">✉️ Email</div></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:1.5rem;flex-wrap:wrap;">
+          <a href="https://www.facebook.com/nguyen.quocthien.58/" target="_blank" class="social-btn" title="Facebook">fb</a>
+          <a href="https://www.tiktok.com/@thien.master.app" target="_blank" class="social-btn" title="TikTok">tt</a>
+          <a href="https://www.youtube.com/@NGUYỄNQUỐCTHIỆNAI" target="_blank" class="social-btn" title="YouTube">yt</a>
+          <a href="https://zalo.me/0968065274" target="_blank" class="social-btn" title="Zalo">zl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== AFFILIATE PAGE ===== -->
+<div class="page" id="page-affiliate">
+  <section style="padding:100px 4% 60px;">
+    <h2 class="sec-title">TIẾP THỊ <span class="gold">LIÊN KẾT</span></h2>
+    <div class="gold-line"></div>
+    <p class="sec-sub">Kiếm hoa hồng lên đến 30% khi giới thiệu sản phẩm Thiện Vua App</p>
+    <div class="aff-hero">
+      <div class="aff-percent">30%</div>
+      <h2 style="font-family:'Playfair Display',serif;margin:1rem 0 0.5rem;">HOA HỒNG CHO MỖI ĐƠN HÀNG</h2>
+      <p style="color:var(--muted);max-width:500px;margin:0 auto 1.5rem;">Tham gia ngay chương trình tiếp thị liên kết và kiếm tiền thụ động cùng Thiện Vua App</p>
+      <a href="https://zalo.me/g/auvzpn118" target="_blank" class="btn-gold">💰 ĐĂNG KÝ NGAY QUA ZALO</a>
+    </div>
+    <div class="aff-steps">
+      <div class="aff-step reveal"><div class="step-num">01</div><h3>Đăng Ký</h3><p>Liên hệ qua Zalo 0968065274 để đăng ký tài khoản tiếp thị liên kết miễn phí.</p></div>
+      <div class="aff-step reveal"><div class="step-num">02</div><h3>Chia Sẻ Link</h3><p>Nhận link giới thiệu độc quyền và chia sẻ tới khách hàng tiềm năng của bạn.</p></div>
+      <div class="aff-step reveal"><div class="step-num">03</div><h3>Nhận Hoa Hồng</h3><p>Nhận hoa hồng 30% cho mỗi đơn hàng thành công. Thanh toán nhanh chóng.</p></div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(201,168,76,0.2);border-radius:16px;padding:2rem;max-width:700px;margin:2rem auto;">
+      <h3 style="font-family:'Playfair Display',serif;text-align:center;margin-bottom:1.5rem;color:var(--gold);">📊 BẢNG HOA HỒNG</h3>
+      <table class="admin-table" style="margin:0;">
+        <tr><th>Sản Phẩm</th><th>Giá Bán</th><th>Hoa Hồng 30%</th></tr>
+        <tr><td>Siêu App Đa Vũ Trụ V2</td><td style="color:var(--gold)">16.900K</td><td style="color:#22c55e;font-weight:800">5.070K</td></tr>
+        <tr><td>Siêu App Đa Vũ Trụ V1</td><td style="color:var(--gold)">11.900K</td><td style="color:#22c55e;font-weight:800">3.570K</td></tr>
+        <tr><td>GPT Money Coaching</td><td style="color:var(--gold)">3.990$</td><td style="color:#22c55e;font-weight:800">1.197$</td></tr>
+        <tr><td>1000 KOL AI Bán Hàng</td><td style="color:var(--gold)">1.990K</td><td style="color:#22c55e;font-weight:800">597K</td></tr>
+        <tr><td>Các App 990K</td><td style="color:var(--gold)">990K</td><td style="color:#22c55e;font-weight:800">297K</td></tr>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- ===== STUDENTS PAGE ===== -->
+<div class="page" id="page-students">
+  <section style="padding:100px 4% 60px;">
+    <h2 class="sec-title">HỌC VIÊN <span class="gold">THÀNH CÔNG</span></h2>
+    <div class="gold-line"></div>
+    <p class="sec-sub">Hàng trăm học viên đã thay đổi cuộc đời nhờ AI cùng Thiện Vua App</p>
+    <div class="testi-grid" style="margin-bottom:3rem;">
+      <div class="testi-card"><div class="testi-vid"><span class="testi-tag-badge">Video</span><div class="play-circle">▶</div></div><div class="testi-body"><div class="testi-name">Học viên #1 – CEO Doanh nghiệp</div><div class="testi-stars">★★★★★</div><div class="testi-quote">"AI đã giúp tôi cắt giảm 70% chi phí và tăng doanh thu X3 chỉ sau 2 tháng học."</div></div></div>
+      <div class="testi-card"><div class="testi-vid"><span class="testi-tag-badge">Video</span><div class="play-circle">▶</div></div><div class="testi-body"><div class="testi-name">Học viên #2 – Chủ shop online</div><div class="testi-stars">★★★★★</div><div class="testi-quote">"Từ khi dùng AI tôi không cần tuyển thêm nhân viên, doanh thu tăng 5 lần."</div></div></div>
+      <div class="testi-card"><div class="testi-vid"><span class="testi-tag-badge">Video</span><div class="play-circle">▶</div></div><div class="testi-body"><div class="testi-name">Học viên #3 – KOL Influencer</div><div class="testi-stars">★★★★★</div><div class="testi-quote">"Tôi tạo được 1000 app chỉ trong 1 ngày. Thu nhập thụ động tăng không ngờ."</div></div></div>
+      <div class="testi-card"><div class="testi-vid"><span class="testi-tag-badge">Video</span><div class="play-circle">▶</div></div><div class="testi-body"><div class="testi-name">Học viên #4 – Startup founder</div><div class="testi-stars">★★★★★</div><div class="testi-quote">"Khoá học giúp tôi xây hệ thống bán hàng tự động hoàn toàn trong 30 ngày."</div></div></div>
+      <div class="testi-card"><div class="testi-vid"><span class="testi-tag-badge">Video</span><div class="play-circle">▶</div></div><div class="testi-body"><div class="testi-name">Học viên #5 – Người bán khoá học</div><div class="testi-stars">★★★★★</div><div class="testi-quote">"AI đã giúp tôi tạo content tự động, bán hàng 24/7 không cần ngồi máy tính."</div></div></div>
+      <div class="testi-card"><div class="testi-vid"><span class="testi-tag-badge">Video</span><div class="play-circle">▶</div></div><div class="testi-body"><div class="testi-name">Học viên #6 – CEO ngành F&B</div><div class="testi-stars">★★★★★</div><div class="testi-quote">"Hệ thống chatbot AI đã chăm sóc 500+ khách hàng mỗi ngày thay cho tôi."</div></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div class="page" id="page-login">
+  <section style="padding:120px 4% 60px;">
+    <div class="form-page">
+      <div class="form-card">
+        <div style="text-align:center;margin-bottom:1.5rem;">
+          <div style="width:64px;height:64px;border-radius:50%;border:2px solid var(--gold);overflow:hidden;margin:0 auto 1rem;"><img src="https://i.postimg.cc/hh2HK1Gf/LOGO-VUA-APP.png" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='👑'"/></div>
+        </div>
+        <h2>ĐĂNG NHẬP</h2>
+        <div class="form-group"><label>Email / Số điện thoại</label><input type="text" placeholder="Nhập email hoặc số điện thoại"/></div>
+        <div class="form-group"><label>Mật khẩu</label><input type="password" placeholder="Nhập mật khẩu"/></div>
+        <div style="text-align:right;margin-bottom:1.2rem;"><a style="color:var(--gold);font-size:0.82rem;cursor:pointer;text-decoration:none;">Quên mật khẩu?</a></div>
+        <button class="form-submit" onclick="alert('Đăng nhập thành công! Chào mừng trở lại!')">🔐 ĐĂNG NHẬP</button>
+        <div class="form-divider">hoặc</div>
+        <div class="form-link">Chưa có tài khoản? <a onclick="showPage('register')">Đăng ký ngay</a></div>
+        <div class="form-link" style="margin-top:0.5rem;"><a onclick="showPage('admin')">🔑 Truy cập Admin</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== REGISTER PAGE ===== -->
+<div class="page" id="page-register">
+  <section style="padding:120px 4% 60px;">
+    <div class="form-page">
+      <div class="form-card">
+        <h2>ĐĂNG KÝ NGAY</h2>
+        <div class="form-group"><label>Họ và tên</label><input type="text" placeholder="Nhập họ và tên đầy đủ"/></div>
+        <div class="form-group"><label>Số điện thoại</label><input type="tel" placeholder="Nhập số điện thoại"/></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="Nhập địa chỉ email"/></div>
+        <div class="form-group"><label>Mật khẩu</label><input type="password" placeholder="Tạo mật khẩu (ít nhất 8 ký tự)"/></div>
+        <div class="form-group"><label>Bạn là</label>
+          <select><option>-- Chọn đối tượng --</option><option>Chủ doanh nghiệp / CEO</option><option>Người kinh doanh online</option><option>KOL / Influencer</option><option>Người bán khoá học</option><option>Startup / Khởi nghiệp</option><option>Khác</option></select>
+        </div>
+        <button class="form-submit" onclick="alert('Đăng ký thành công! Thiện Vua App sẽ liên hệ với bạn sớm nhất!')">✍️ ĐĂNG KÝ NGAY</button>
+        <div class="form-link">Đã có tài khoản? <a onclick="showPage('login')">Đăng nhập</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== ADMIN PAGE ===== -->
+<div class="page" id="page-admin">
+  <div style="padding-top:70px;">
+    <div class="admin-nav">
+      <button class="admin-tab active" onclick="switchAdminTab(this,'dash')">📊 Dashboard</button>
+      <button class="admin-tab" onclick="switchAdminTab(this,'orders')">📦 Đơn Hàng</button>
+      <button class="admin-tab" onclick="switchAdminTab(this,'users')">👥 Học Viên</button>
+      <button class="admin-tab" onclick="switchAdminTab(this,'products-tab')">🛍️ Sản Phẩm</button>
+      <button class="admin-tab" onclick="switchAdminTab(this,'affiliate-tab')">💰 Tiếp Thị LK</button>
+    </div>
+    <section style="padding:2rem 4%;">
+      <div id="admin-dash">
+        <div class="admin-stats">
+          <div class="admin-stat"><div class="num">142</div><div class="lbl">Tổng Đơn Hàng</div></div>
+          <div class="admin-stat"><div class="num" style="color:#22c55e">84.7M</div><div class="lbl">Doanh Thu (VNĐ)</div></div>
+          <div class="admin-stat"><div class="num">87</div><div class="lbl">Học Viên Active</div></div>
+          <div class="admin-stat"><div class="num" style="color:#eab308">23</div><div class="lbl">Đơn Chờ Xử Lý</div></div>
+        </div>
+        <h3 style="margin-bottom:1rem;color:var(--gold);">Đơn Hàng Gần Đây</h3>
+        <table class="admin-table">
+          <tr><th>Mã ĐH</th><th>Khách Hàng</th><th>Sản Phẩm</th><th>Giá Trị</th><th>Trạng Thái</th></tr>
+          <tr><td>#TVA001</td><td>Nguyễn Văn A</td><td>Siêu App Đa Vũ Trụ V2</td><td style="color:var(--gold)">16.900K</td><td><span class="badge-green">Hoàn thành</span></td></tr>
+          <tr><td>#TVA002</td><td>Trần Thị B</td><td>GPT Money Coaching</td><td style="color:var(--gold)">3.990$</td><td><span class="badge-yellow">Đang xử lý</span></td></tr>
+          <tr><td>#TVA003</td><td>Lê Văn C</td><td>1000 KOL AI</td><td style="color:var(--gold)">990K</td><td><span class="badge-green">Hoàn thành</span></td></tr>
+          <tr><td>#TVA004</td><td>Phạm Thị D</td><td>Ảnh Doanh Nhân Nữ</td><td style="color:var(--gold)">990K</td><td><span class="badge-red">Chờ thanh toán</span></td></tr>
+          <tr><td>#TVA005</td><td>Hoàng Văn E</td><td>Kịch Bản Triệu View</td><td style="color:var(--gold)">990K</td><td><span class="badge-green">Hoàn thành</span></td></tr>
+        </table>
+      </div>
+      <div id="admin-orders" style="display:none">
+        <h3 style="margin-bottom:1rem;color:var(--gold);">Tất Cả Đơn Hàng</h3>
+        <table class="admin-table"><tr><th>Mã ĐH</th><th>Khách Hàng</th><th>Sản Phẩm</th><th>Giá Trị</th><th>Ngày</th><th>Trạng Thái</th></tr>
+        <tr><td>#TVA001</td><td>Nguyễn Văn A</td><td>Siêu App V2</td><td style="color:var(--gold)">16.900K</td><td>01/03/2025</td><td><span class="badge-green">Hoàn thành</span></td></tr>
+        <tr><td>#TVA002</td><td>Trần Thị B</td><td>GPT Money</td><td style="color:var(--gold)">3.990$</td><td>02/03/2025</td><td><span class="badge-yellow">Xử lý</span></td></tr>
+        <tr><td>#TVA003</td><td>Lê Văn C</td><td>1000 KOL AI</td><td style="color:var(--gold)">990K</td><td>03/03/2025</td><td><span class="badge-green">Hoàn thành</span></td></tr></table>
+      </div>
+      <div id="admin-users" style="display:none">
+        <h3 style="margin-bottom:1rem;color:var(--gold);">Danh Sách Học Viên</h3>
+        <table class="admin-table"><tr><th>ID</th><th>Họ Tên</th><th>Email</th><th>Khoá Học</th><th>Ngày Đăng Ký</th><th>Trạng Thái</th></tr>
+        <tr><td>#001</td><td>Nguyễn Văn A</td><td>a@gmail.com</td><td>GPT Money</td><td>01/01/2025</td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>#002</td><td>Trần Thị B</td><td>b@gmail.com</td><td>Siêu App V2</td><td>05/01/2025</td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>#003</td><td>Lê Văn C</td><td>c@gmail.com</td><td>1000 KOL AI</td><td>10/01/2025</td><td><span class="badge-yellow">Chờ</span></td></tr></table>
+      </div>
+      <div id="admin-products-tab" style="display:none">
+        <h3 style="margin-bottom:1rem;color:var(--gold);">Quản Lý Sản Phẩm</h3>
+        <table class="admin-table"><tr><th>Tên Sản Phẩm</th><th>Giá</th><th>Đã Bán</th><th>Doanh Thu</th><th>Trạng Thái</th></tr>
+        <tr><td>Siêu App Đa Vũ Trụ V2</td><td style="color:var(--gold)">16.900K</td><td>12</td><td style="color:#22c55e">202.800K</td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>GPT Money Coaching</td><td style="color:var(--gold)">3.990$</td><td>3</td><td style="color:#22c55e">11.970$</td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>1000 KOL AI</td><td style="color:var(--gold)">990K</td><td>45</td><td style="color:#22c55e">44.550K</td><td><span class="badge-green">Active</span></td></tr></table>
+      </div>
+      <div id="admin-affiliate-tab" style="display:none">
+        <h3 style="margin-bottom:1rem;color:var(--gold);">Tiếp Thị Liên Kết</h3>
+        <table class="admin-table"><tr><th>Cộng Tác Viên</th><th>Số Đơn</th><th>Doanh Thu</th><th>Hoa Hồng 30%</th><th>Trạng Thái</th></tr>
+        <tr><td>CTV Nguyễn A</td><td>8</td><td style="color:var(--gold)">23.920K</td><td style="color:#22c55e">7.176K</td><td><span class="badge-green">Đã thanh toán</span></td></tr>
+        <tr><td>CTV Trần B</td><td>5</td><td style="color:var(--gold)">14.950K</td><td style="color:#22c55e">4.485K</td><td><span class="badge-yellow">Chờ thanh toán</span></td></tr></table>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="main-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">⚜ THIỆN VUA APP</div>
+      <p class="footer-desc">Đơn vị tiên phong trong huấn luyện và triển khai AI thực chiến cho doanh nghiệp tại Việt Nam. Giúp bạn X3 X5 doanh số với sức mạnh AI.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/nguyen.quocthien.58/" target="_blank" class="social-btn">f</a>
+        <a href="https://www.tiktok.com/@thien.master.app" target="_blank" class="social-btn">t</a>
+        <a href="https://www.youtube.com/@NGUYỄNQUỐCTHIỆNAI" target="_blank" class="social-btn">▶</a>
+        <a href="https://zalo.me/0968065274" target="_blank" class="social-btn">z</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>LIÊN KẾT</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('home')">Trang Chủ</a></li>
+        <li><a href="#" onclick="showPage('products')">Sản Phẩm</a></li>
+        <li><a href="#" onclick="showPage('course')">Khoá Học</a></li>
+        <li><a href="#" onclick="showPage('about')">Về Chúng Tôi</a></li>
+        <li><a href="#" onclick="showPage('affiliate')">Tiếp Thị Liên Kết (30%)</a></li>
+        <li><a href="#" onclick="showPage('students')">Học Viên</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>LIÊN HỆ</h4>
+      <div class="footer-contact-list">
+        <a href="tel:0985774448">📞 0985 774 448</a>
+        <a href="https://zalo.me/0968065274" target="_blank">💬 Zalo: 0968 065 274</a>
+        <a href="mailto:thienmasterai@gmail.com">✉️ thienmasterai@gmail.com</a>
+        <a href="https://www.facebook.com/nguyen.quocthien.58/" target="_blank">📘 Facebook: Nguyễn Quốc Thiện</a>
+        <a href="https://www.tiktok.com/@thien.master.app" target="_blank">📱 TikTok: @thien.master.app</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>BẢN TIN AI</h4>
+      <p style="color:var(--muted);font-size:0.82rem;margin-bottom:0.8rem;">Nhận kiến thức AI mới nhất & ưu đãi độc quyền hàng tuần</p>
+      <div class="newsletter-wrap">
+        <input type="email" placeholder="Email của bạn"/>
+        <button onclick="alert('Đã đăng ký nhận bản tin!')">→</button>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <a href="#" onclick="showPage('login')" style="color:var(--gold);text-decoration:none;font-size:0.82rem;font-weight:700;">🔐 Đăng Nhập</a>
+        &nbsp;|&nbsp;
+        <a href="#" onclick="showPage('register')" style="color:var(--gold);text-decoration:none;font-size:0.82rem;font-weight:700;">✍️ Đăng Ký</a>
+        &nbsp;|&nbsp;
+        <a href="#" onclick="showPage('admin')" style="color:var(--muted);text-decoration:none;font-size:0.82rem;">Admin</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Thiện Vua App – Chuyên Gia AI Số 1 Việt Nam. All rights reserved.</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="#">Chính sách bảo mật</a>
+      <a href="#">Điều khoản sử dụng</a>
+      <a href="#">Chính sách hoàn tiền</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING GIFT -->
+<div class="floating-gift">
+  <div class="gift-bubble"><span>🎁</span> NHẬN QUÀ NGAY<br><strong>10 APP SIÊU CẤP VIP PRO</strong></div>
+  <a href="https://zalo.me/g/auvzpn118" target="_blank" class="gift-btn">
+    <span class="icon">🎁</span>
+    <small>NHẬN QUÀ<br>NGAY</small>
+  </a>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal" id="productModalContent">
+    <button class="modal-close" onclick="closeModal('productModal')">✕</button>
+    <div class="modal-header" id="modalHeader"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal pay-modal" id="payModalContent">
+    <button class="modal-close" onclick="closeModal('payModal')">✕</button>
+    <div class="pay-header">
+      <h3 id="payProductName">Thanh Toán</h3>
+      <div class="pay-price" id="payProductPrice">3.990$</div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;" id="payProductPriceVnd"></div>
+    </div>
+    <div class="pay-body">
+      <div class="pay-tabs">
+        <button class="pay-tab active" onclick="switchPayTab(this,'bank')">🏦 Ngân Hàng</button>
+        <button class="pay-tab" onclick="switchPayTab(this,'qr')">📱 QR Code</button>
+        <button class="pay-tab" onclick="switchPayTab(this,'paypal')">💳 PayPal</button>
+      </div>
+      <!-- Bank Transfer -->
+      <div class="pay-panel active" id="pay-bank">
+        <div class="bank-info">
+          <div class="bank-row"><span class="label">Ngân hàng</span><span class="val gold">TECHCOMBANK</span></div>
+          <div class="bank-row"><span class="label">Chủ tài khoản</span><span class="val">NGUYỄN QUỐC THIỆN</span></div>
+          <div class="bank-row"><span class="label">Số tài khoản</span><span class="val">19035907828017 <button class="copy-btn" onclick="copyText('19035907828017')">Copy</button></span></div>
+          <div class="bank-row"><span class="label">Nội dung CK</span><span class="val">HỌ TÊN – GPT MONEY AI</span></div>
+        </div>
+        <div class="pay-form">
+          <input type="text" placeholder="Họ và tên *" required/>
+          <input type="tel" placeholder="Số điện thoại *" required/>
+          <input type="email" placeholder="Email nhận tài khoản *" required/>
+          <input type="text" placeholder="Nội dung chuyển khoản (HỌ TÊN – TÊN SP)"/>
+          <button class="pay-submit" onclick="submitPayment()">✅ XÁC NHẬN ĐÃ CHUYỂN KHOẢN</button>
+        </div>
+        <p class="pay-note">⚡ Hệ thống sẽ tự động gửi email xác nhận + link truy cập khoá học trong vòng <strong style="color:var(--gold)">15 phút</strong> sau khi xác nhận thanh toán.</p>
+      </div>
+      <!-- QR -->
+      <div class="pay-panel" id="pay-qr">
+        <div class="qr-wrap">
+          <div class="qr-neon-border">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00020101021238570010A00000072701270006970454011903590782801701540370530704540110000000&color=000000&bgcolor=ffffff" alt="QR Techcombank Nguyễn Quốc Thiện" width="180" height="180"/>
+          </div>
+          <div class="neon-line"></div>
+          <div style="display:flex;justify-content:center;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Techcombank_logo.svg/200px-Techcombank_logo.svg.png" style="height:24px;" onerror="this.style.display='none'"/>
+          </div>
+          <div class="qr-bank-name">TECHCOMBANK</div>
+          <div class="qr-acct">1903 5907 8280 17</div>
+          <div class="qr-sub">NGUYỄN QUỐC THIỆN</div>
+          <div class="neon-line"></div>
+          <div style="font-size:0.78rem;color:var(--muted);">Quét mã QR để chuyển khoản nhanh qua ứng dụng ngân hàng</div>
+        </div>
+        <div class="pay-form" style="margin-top:1rem;">
+          <input type="text" placeholder="Họ và tên *"/>
+          <input type="email" placeholder="Email nhận tài khoản *"/>
+          <button class="pay-submit" onclick="submitPayment()">✅ ĐÃ THANH TOÁN – XÁC NHẬN</button>
+        </div>
+      </div>
+      <!-- PayPal -->
+      <div class="pay-panel" id="pay-paypal">
+        <div class="paypal-info">
+          <div style="font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem;">Chuyển khoản qua PayPal:</div>
+          <div class="paypal-email">quocthiencr7@gmail.com</div>
+          <button class="copy-btn" style="margin-top:0.5rem;padding:6px 14px;" onclick="copyText('quocthiencr7@gmail.com')">📋 Copy Email PayPal</button>
+        </div>
+        <div class="pay-form" style="margin-top:1rem;">
+          <input type="text" placeholder="Họ và tên *"/>
+          <input type="email" placeholder="Email đăng ký PayPal *"/>
+          <input type="email" placeholder="Email nhận tài khoản khoá học *"/>
+          <button class="pay-submit" onclick="submitPayment()">✅ XÁC NHẬN ĐÃ THANH TOÁN PAYPAL</button>
+        </div>
+        <p class="pay-note">Sau khi chuyển khoản PayPal thành công, vui lòng nhắn tin Zalo <strong style="color:var(--gold)">0968065274</strong> kèm ảnh chụp màn hình xác nhận.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== PRODUCTS DATA =====
+const products = [
+  {id:1, cat:'Siêu App & Quản Trị', name:'SIÊU APP ĐA VŨ TRỤ V1', price:'11.900K', emoji:'🌌',
+   imgId:'1eTzWhC2BC9XsFuB0ybk9yLcVnmB5t4gM',
+   desc:'Nền tảng quản trị kinh doanh đa kênh tích hợp AI toàn diện – Content, Ảnh, Marketing.',
+   features:['App Content AI tự động','App Ảnh sáng tạo chuyên nghiệp','Tích hợp marketing đa kênh','Quản lý khách hàng tự động','Hỗ trợ 24/7']},
+  {id:2, cat:'Siêu App & Quản Trị', name:'SIÊU APP ĐA VŨ TRỤ V2', price:'16.900K', emoji:'🚀', badge:'HOT',
+   imgId:'15_rVnZjcsfhGUVOCH-3BoivJ0pjIJw4P',
+   desc:'Phiên bản nâng cấp tối thượng – Content + Ảnh + Web 3D. Tự động hoá quy trình kinh doanh hoàn toàn.',
+   features:['Tất cả tính năng V1','Website 3D tự tạo','1000+ App chỉ 1 chạm','Game & giải trí AI','Tự động hoá hoàn toàn','Hỗ trợ trọn đời VIP']},
+  {id:3, cat:'Siêu App & Quản Trị', name:'CHIẾN LƯỢC CHO CEO', price:'1.990K', emoji:'🏢',
+   imgId:'1m0ULZbS84OmWtzoA7TZPp590UTp_8Ofe',
+   desc:'Cố vấn chiến lược kinh doanh thông minh dành riêng cho CEO & lãnh đạo doanh nghiệp.',
+   features:['Phân tích SWOT tự động','Lập kế hoạch kinh doanh','Chiến lược scale đội nhóm','KPI & OKR tự động','Báo cáo thông minh']},
+  {id:4, cat:'KOL & Marketing', name:'1000 KOL AI', price:'990K', emoji:'💃',
+   imgId:'1WaeFYGl4_a1zIy9j03bOtg9odLA9pgTX',
+   desc:'Sở hữu đội ngũ 1000 KOL ảo sẵn sàng quảng bá thương hiệu của bạn 24/7 không nghỉ.',
+   features:['1000 KOL AI đa dạng','Tự động đăng content','Kết nối đa nền tảng','Phân tích hiệu quả','Chi phí thấp hơn 90%']},
+  {id:5, cat:'KOL & Marketing', name:'1000 KOL AI BÁN HÀNG', price:'1.990K', emoji:'🛍️', badge:'NEW',
+   imgId:'10CW0JLgmDobp_FZsGLdFQ_6tYBt1v5c7',
+   desc:'KOL AI chuyên sâu để chốt đơn hàng và livestream bán hàng tự động 24/7 hiệu quả cao.',
+   features:['1000 KOL bán hàng chuyên nghiệp','Livestream AI tự động','Chốt đơn thông minh','Phân tích khách hàng','Scale doanh thu X5']},
+  {id:6, cat:'Nội Dung & Video', name:'KỊCH BẢN TRIỆU VIEW', price:'990K', emoji:'🎬',
+   imgId:'12G2x97xOxJnJGmj2CQCRTyJGl1Vwyxi',
+   desc:'App tạo kịch bản nội dung TikTok & YouTube viral – hàng trăm chủ đề, triệu view mỗi video.',
+   features:['1000+ template kịch bản','TikTok & YouTube','Short & Long format','Auto-generate nội dung','SEO tối ưu']},
+  {id:7, cat:'Nội Dung & Video', name:'KỊCH BẢN VEO3/SORA 2', price:'990K', emoji:'🎥',
+   imgId:'1ugOyq59vNzmIVo0ALVSZPsYd_va3r0MK',
+   desc:'Tạo hàng ngàn kịch bản video AI siêu VIP PRO – đa dạng phong cách, chốt đơn tức thì.',
+   features:['Kịch bản Veo3 & Sora 2','Đa dạng phong cách','Chốt đơn tức thì','Giao diện cao cấp','Hot trend tự động']},
+  {id:8, cat:'Nội Dung & Video', name:'VIDEO VIRAL CHIBI 3D', price:'990K', emoji:'🎭',
+   imgId:'1szgPD_NX8PbcjxB0fvRYCdS_19x5h85X',
+   desc:'Tạo ảo sinh thái & kênh chibi 3D viral – đa dạng phong cách sáng tạo không giới hạn.',
+   features:['Chibi 3D animation','Viral content factory','Đa phong cách','Auto trending','YouTube Shorts ready']},
+  {id:9, cat:'Nội Dung & Video', name:'THUMBNAIL YOUTUBE', price:'990K', emoji:'📺',
+   imgId:'10303FwffV4Fb18-lAe5YS7i4hf1yjA7K',
+   desc:'Copy ngay thumbnail triệu view – AI lý tưởng hoá ý tưởng, bạn chỉ việc đăng video lên.',
+   features:['Template triệu view','AI generate concept','CTR tối ưu','Đa kích thước','A/B test tự động']},
+  {id:10, cat:'Thiết Kế & Thương Hiệu', name:'ẢNH DOANH NHÂN NAM', price:'990K', emoji:'👔',
+   imgId:'1psHttWmJbpHgsq7ACpPDU1PmMEjVwGK2',
+   desc:'Tạo ảnh chân dung doanh nhân nam lịch lãm và chuyên nghiệp đẳng cấp quốc tế 8K.',
+   features:['Chân dung 8K ultra','100+ phong cách suit','Nền cao cấp quốc tế','Xử lý nhanh 5 phút','Format đa dạng']},
+  {id:11, cat:'Thiết Kế & Thương Hiệu', name:'ẢNH DOANH NHÂN NỮ', price:'990K', emoji:'👩‍💼',
+   imgId:'1pz6dL_sRwH61TI5WICWhyqUkSGJ08FJx',
+   desc:'Tạo ảnh chân dung doanh nhân nữ sang trọng và đẳng cấp – chuyên nghiệp 100%.',
+   features:['Chân dung 8K ultra','Trang phục luxury','Makeup chuyên nghiệp','Nền quốc tế cao cấp','Phong cách đa dạng']},
+  {id:12, cat:'Thiết Kế & Thương Hiệu', name:'PHỤC CHẾ ẢNH CŨ', price:'990K', emoji:'🖼️',
+   imgId:'1GyH8Q4xhETYQNUomvbvR_TiFHAYkzM47',
+   desc:'Phục hồi và làm nét những bức ảnh cũ, hư hỏng – sống lại ký ức quý giá của bạn.',
+   features:['Phục hồi ảnh rách','Nâng chất 4K/8K','Tô màu ảnh đen trắng','Sửa ảnh mờ nhoè','Xử lý nhanh chóng']},
+  {id:13, cat:'Thiết Kế & Thương Hiệu', name:'QUÝ CÔ SANG CHÁNH', price:'990K', emoji:'💎',
+   imgId:'1g6H9RTDLrjWctL_y0bXezIOD3lXdr6iN',
+   desc:'Tạo ảnh phong cách quý cô kiêu kỳ và sang trọng – nâng tầm thương hiệu cá nhân.',
+   features:['Luxury fashion style','Phong cách Châu Âu','Outfit cao cấp','Bối cảnh quốc tế','Personal branding']},
+  {id:14, cat:'Thiết Kế & Thương Hiệu', name:'TẠO ẢNH POSTER', price:'990K', emoji:'🎨',
+   imgId:'13jnUHCAK1ds202KLZZxp6YJ6bDfrRZG',
+   desc:'AI Poster Master – 1 chạm tạo hàng nghìn poster chuyên nghiệp cho mọi chiến dịch.',
+   features:['1000+ template poster','Social media ready','Brand identity','Event & promotion','Print quality HD']},
+  {id:15, cat:'Thiết Kế & Thương Hiệu', name:'THỜI TRANG CAO CẤP', price:'990K', emoji:'👗',
+   imgId:'1vsN_G3_dvdhlY8VfXMz3izHJWkN82__J',
+   desc:'Ứng dụng chỉnh ảnh thời trang cao cấp – đổi mọi trang phục chỉ với 1 chạm.',
+   features:['1000+ trang phục luxury','Khóa mặt 100%','Bối cảnh quốc tế','Thời trang 4 mùa','Export HD 4K']},
+  {id:16, cat:'Thiết Kế & Thương Hiệu', name:'XÂY DỰNG THƯƠNG HIỆU', price:'990K', emoji:'🌐',
+   imgId:'1m0ULZbS84OmWtzoA7TZPp590UTp_8Ofe',
+   desc:'Xây dựng và nâng tầm thương hiệu cá nhân/doanh nghiệp ra thị trường toàn cầu.',
+   features:['Brand identity design','Logo & visual system','Social presence','Global positioning','Digital marketing']},
+  {id:17, cat:'Tư Duy & Phát Triển', name:'BIẾT TRƯỚC THIÊN MỆNH', price:'990K', emoji:'🔮',
+   imgId:'1NdCBQCoPyRl6ol_ume0wgVfBxubIbswY',
+   desc:'Ứng dụng AI phân tích xu hướng và dự báo tương lai theo Vận Mệnh, Tử Vi, Phong Thủy.',
+   features:['Vận mệnh & số phận','Tử vi & tài lộc','Phong thủy bất động sản','Sự nghiệp & gia đình','Tình duyên chính xác']},
+  {id:18, cat:'Tư Duy & Phát Triển', name:'VIẾT SÁCH TRIỆU ĐÔ', price:'1.990K', emoji:'📚',
+   imgId:'1qvXMY0KtBlpxW3O3286Jfr4AoAgc9dPN',
+   desc:'Trở thành tác giả sách nổi tiếng với sự hỗ trợ của AI – 1 chạm kích hoạt tri thức vô hạn.',
+   features:['Viết sách AI tự động','Nghiên cứu chuyên sâu','Xuất bản chuyên nghiệp','Marketing sách viral','Tác giả triệu đô']},
+  {id:19, cat:'Tư Duy & Phát Triển', name:'VỊT HOÁ THIÊN NGA', price:'990K', emoji:'🦢',
+   imgId:'1zUAh7Ph5UWvzwUuhGAwxIDoB_5o4rC3a',
+   desc:'Lộ trình thay đổi diện mạo và tư duy toàn diện – Nâng tầm thương hiệu cá nhân.',
+   features:['Personal image upgrade','Mindset transformation','Style consulting AI','Social media glow up','Brand elevation']},
+  {id:20, cat:'Tư Duy & Phát Triển', name:'NGƯỜI THÀNH CÔNG', price:'990K', emoji:'🏆',
+   imgId:'1vr1WUiwLDNYmSVUI2c0P0hEbDw1BQvax',
+   desc:'Chương trình AI huấn luyện tư duy và hành động của người thành công trong thời đại mới.',
+   features:['Success mindset AI','Goal setting system','Daily habits tracker','Mentor AI 24/7','Community VIP']},
+  {id:21, cat:'Khoá Học Coaching', name:'NGƯỜI THỪA KẾ VỊ VUA', price:'3.990$', emoji:'👑', badge:'VIP',
+   imgId:'1SZs6E4k2ojehy8TVo1eK-1ptzoqD3zIX',
+   desc:'Khoá học coaching 1:1 tối thượng – Xây hệ thống kiếm tiền tự động bằng AI từ con số 0.',
+   features:['Coaching 1:1 trực tiếp','10 App code sẵn tặng kèm','Prompt AI độc quyền','Hỗ trợ trọn đời','Cộng đồng VIP','Kết quả trong 6 tháng']},
+];
+
+// Render products
+function renderProducts(containerId, limit) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const data = limit ? products.slice(0,limit) : products;
+  const cats = [...new Set(data.map(p=>p.cat))];
+  let html = '';
+  cats.forEach(cat => {
+    const catProducts = data.filter(p=>p.cat===cat);
+    html += `<div class="cat-label">${cat}</div><div class="products-grid">`;
+    catProducts.forEach(p => {
+      const imgUrl = `https://drive.google.com/thumbnail?id=${p.imgId}&sz=w400`;
+      html += `<div class="p-card" onclick="openProductModal(${p.id})">
+        <div class="p-card-img">
+          ${p.badge?`<span class="p-badge">${p.badge}</span>`:''}
+          <img src="${imgUrl}" alt="${p.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'product-img-placeholder\\'>${p.emoji}</div>'"/>
+        </div>
+        <div class="p-body">
+          <div class="p-name">${p.name}</div>
+          <div class="p-price">${p.price}</div>
+          <div class="p-desc">${p.desc}</div>
+          <span class="p-btn">🛒 Xem & Mua Ngay</span>
+        </div>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+
+function openProductModal(id) {
+  const p = products.find(x=>x.id===id);
+  if (!p) return;
+  const imgUrl = `https://drive.google.com/thumbnail?id=${p.imgId}&sz=w800`;
+  document.getElementById('modalHeader').innerHTML = `
+    <img src="${imgUrl}" alt="${p.name}" onerror="this.style.display='none'"/>
+    <h2>${p.name}</h2>
+    <div class="price" style="color:var(--gold);font-family:'Playfair Display',serif;">${p.price}</div>
+  `;
+  let featureHTML = '<ul>'+p.features.map(f=>`<li>${f}</li>`).join('')+'</ul>';
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-desc">${p.desc}</div>
+    <div class="modal-features"><h4>✦ Tính Năng Nổi Bật</h4>${featureHTML}</div>
+    <div class="buy-btn-wrap">
+      <button class="btn-gold" style="font-size:1rem;" onclick="closeModal('productModal');openPayModal({name:'${p.name}',price:'${p.price}',priceVnd:''})">
+        🛒 MUA NGAY – ${p.price}
+      </button>
+    </div>
+  `;
+  document.getElementById('productModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function openPayModal(product) {
+  document.getElementById('payProductName').textContent = product.name;
+  document.getElementById('payProductPrice').textContent = product.price;
+  document.getElementById('payProductPriceVnd').textContent = product.priceVnd || '';
+  document.getElementById('payModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+  document.body.style.overflow='';
+}
+
+function switchPayTab(btn, panel) {
+  document.querySelectorAll('.pay-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.pay-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pay-'+panel).classList.add('active');
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(()=>alert('Đã copy: '+text)).catch(()=>{
+    const el=document.createElement('input');el.value=text;document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);alert('Đã copy: '+text);
+  });
+}
+
+function submitPayment() {
+  closeModal('payModal');
+  alert('✅ Đã xác nhận! Hệ thống sẽ gửi email xác nhận + tài khoản học trong vòng 15 phút.\n\nNếu cần hỗ trợ ngay: Zalo 0968065274');
+}
+
+// PAGE NAVIGATION
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.getElementById('main-footer').style.display = ['login','register'].includes(page)?'none':'block';
+  window.scrollTo(0,0);
+  if (page==='products') renderProducts('all-products-container');
+}
+
+function toggleNav() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+function switchAdminTab(btn, id) {
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[id^="admin-"]').forEach(el=>el.style.display='none');
+  document.getElementById('admin-'+id).style.display='block';
+}
+
+// SCROLL REVEAL
+const ro = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-r').forEach(el=>ro.observe(el));
+
+// PARTICLES
+const starsEl=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const s=document.createElement('div');s.className='star';
+  const sz=Math.random()*2+1;
+  s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${Math.random()*4+2}s;animation-delay:${Math.random()*5}s;`;
+  starsEl.appendChild(s);
+}
+for(let i=0;i<15;i++){
+  const p=document.createElement('div');p.className='gold-particle';
+  p.style.cssText=`left:${Math.random()*100}%;animation-duration:${Math.random()*20+15}s;animation-delay:${Math.random()*15}s;`;
+  starsEl.appendChild(p);
+}
+
+// INIT
+renderProducts('home-products-grid', 8);
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-overlay').forEach(o=>{
+  o.addEventListener('click',function(e){if(e.target===this)closeModal(this.id);});
+});
+</script>
+</body>
+</html>
